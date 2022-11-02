@@ -8,11 +8,12 @@
     background-image: url('https://i.insider.com/6273af6fa6a880001827a899?width=1000&format=jpeg&auto=webp');
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
     flex: 1.8; 
     box-shadow: 4px 0px 10px gray;
     color: #FFF;
     font-style: italic;
-    font-weight: 200;
+    font-weight: 500;
 }
 
 .intro {

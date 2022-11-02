@@ -1,0 +1,47 @@
+.side_bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 83%;
+  border-right: 2px solid #ccc;
+  padding-left: 2.5em;
+}
+
+.side_bar h3 {
+  margin: 0;
+}
+
+.item_container{
+  padding-left: 0.5em;
+  font-size: 1.2em;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.item {
+  cursor: pointer;
+}
+
+.filter_container {
+  display: flex;
+  align-items: center;
+  padding-left: 0.5em;
+  margin-top: 0.5em;
+}
+
+.filter_container button {
+  margin-left: auto;
+  margin-right: 2em;
+  padding: 0.5em;
+  padding-inline: 2em;
+  width: 10em;
+  background-color: transparent;
+  border: 2px solid #49465A;
+  border-radius: 0.4em;
+  color: #49465A;
+  font-weight: bold;
+  cursor: pointer;
+}

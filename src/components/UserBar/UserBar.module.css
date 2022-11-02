@@ -1,0 +1,23 @@
+.user_bar {
+  position: fixed;
+  top: 2%;
+  right: 5%;
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
+}
+
+.user_bar h2{
+  cursor: pointer;
+}
+
+.user_bar span {
+  font-size: 1.5em;
+  font-weight: 500;
+  color: #F32948;
+}
+
+.avatar {
+  border: 2px solid #49465A;
+  border-radius: 50%;
+}

@@ -5,8 +5,9 @@ body {
   padding: 0;
   margin: 0;
   font-family: Roboto; 
-
-  
+  background-color: #fafafa;
+  color: #49465A;
+  user-select: none;
 }
 
 a {
