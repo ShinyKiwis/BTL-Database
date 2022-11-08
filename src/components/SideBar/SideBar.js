@@ -31,14 +31,17 @@ const SideBar = ({ products, setProducts, getProducts }) => {
     }
   };
   useEffect(() => {
-    if (selected.length > 1) {
+    console.log(selected.length) 
+    if (selected.length >= 1) {
       console.log(selected.length);
       selected.map((select) => {
         getProducts(select);
       });
+      sortAlpha();
+      sortPrice();
+    }else if (selected.length == 0){
+      setProducts([])
     }
-    sortAlpha();
-    sortPrice();
   }, [selected]);
 
   const sortAlpha = () => {
