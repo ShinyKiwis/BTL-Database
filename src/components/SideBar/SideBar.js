@@ -22,27 +22,40 @@ const SideBar = ({ products, setProducts, getProducts }) => {
   const [toggleAlpha, setToggleAlpha] = useState(true);
   const [togglePrice, setTogglePrice] = useState(true);
   const [selected, setSeleted] = useState(["Electronics"]);
+  const [prev, setPrev] = useState(selected)
   const categories = ["Electronics", "Football", "Real Estate", "Social Media"];
   const addToSeleted = (category) => {
     if (selected.includes(category)) {
+      setPrev(selected)
       setSeleted((selected) => selected.filter((item) => item !== category));
     } else {
       setSeleted((selected) => [...selected, category]);
+      setPrev(selected)
     }
   };
   useEffect(() => {
-    console.log(selected.length) 
     if (selected.length >= 1) {
       console.log(selected.length);
-      selected.map((select) => {
-        getProducts(select);
-      });
-      sortAlpha();
-      sortPrice();
+      if(selected.length > prev.length){
+        selected.map((select) => {
+          getProducts(select);
+        });
+      }
+      // Filter 
+      console.log("PREV: ", prev.length)
+      console.log("SELECTED: ", selected.length)
+      if(prev.length > selected.length){
+        console.log(selected)
+        console.log(products)
+        selected.map((selectedTag) => {
+          setProducts(products.filter(product => product.tags == selectedTag))
+        })
+      }
     }else if (selected.length == 0){
       setProducts([])
     }
   }, [selected]);
+
 
   const sortAlpha = () => {
     let tempProducts = [...products];

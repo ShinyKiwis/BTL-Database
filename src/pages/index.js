@@ -16,16 +16,15 @@ export default function Home() {
       snapshot.docs.forEach(doc => {
         queryProducts.push(doc.data())
       })
-      console.log("QUERYPRODUCTS: ", queryProducts)
-      console.log("PRODUCTS", products)
+      // console.log("QUERYPRODUCTS: ", queryProducts)
+      // console.log("PRODUCTS", products)
       setProducts([...products, ...queryProducts])
     })
   }
   useEffect(() => {
-    console.log("INDEX!")
     getProducts("Electronics")
   }, []);
-  console.log(products)
+  console.log("AFTER: ", products)
   return (
     <main>
       <SideBar products={products} setProducts={setProducts} getProducts={getProducts}/>
