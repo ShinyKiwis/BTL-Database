@@ -7,7 +7,6 @@ const UserBar = ({balance}) => {
       <Image src="/ava.png" width="50" height="50" className={UserBarStyle.avatar} alt="avatar"/>
       <h2>Elon Musk</h2>
       <span>${balance}</span>
-      <h2>Inventory</h2>
     </div>
   )
 }
