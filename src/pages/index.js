@@ -24,11 +24,11 @@ export default function Home() {
   useEffect(() => {
     getProducts("Electronics")
   }, []);
-  console.log("AFTER: ", products)
+  // console.log("AFTER: ", products)
   return (
     <main>
       <SideBar products={products} setProducts={setProducts} getProducts={getProducts}/>
-      <UserBar balance={balance}/>
+      <UserBar balance={balance} setBalance={setBalance}/>
       <div className={HomeStyle.container}>
         {products.map((product, idx) => (
           <ItemCard 
@@ -40,6 +40,7 @@ export default function Home() {
             price={product.price}
             type={product.tags}
             productQuantity={product.quantity}
+            action="buy"
           />
         ))}
       </div>
