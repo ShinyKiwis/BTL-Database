@@ -9,6 +9,7 @@ const Inventory = ({setToggle, balance, setBalance}) => {
   }
   
   const [inventory, setInventory] = useState([]);
+  const [reload, setReload] = useState(false)
 
   useEffect(()=> {
     const fetchData = async () => {
@@ -16,7 +17,7 @@ const Inventory = ({setToggle, balance, setBalance}) => {
       setInventory(items)
     }
     fetchData()
-  }, [])
+  }, [reload])
   return (
     <div className={InventoryStyle.dim}>
       <div className={InventoryStyle.container}>
@@ -35,6 +36,7 @@ const Inventory = ({setToggle, balance, setBalance}) => {
                 type={product.tags}
                 productQuantity={product.quantity}
                 action="sell"
+                setReload={setReload}
               />
             ))
           }  

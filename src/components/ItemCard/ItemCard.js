@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {addToInventory} from "../../firebase/database.js"
+import {addToInventory, deleteProduct} from "../../firebase/database.js"
 import ItemCardStyle from "./ItemCard.module.css";
 
 const QuantityButton = ({ productQuantity, quantity, setQuantity}) => {
@@ -28,7 +28,8 @@ const ItemCard = ({
   price,
   productQuantity,
   action,
-  zIndex
+  zIndex,
+  setReload
 }) => {
   const [quantity, setQuantity] = useState(1);
   const purchaseItem = async () => {
@@ -43,9 +44,10 @@ const ItemCard = ({
     setQuantity(1)
     await addToInventory(purchasedItem);
   };
-  const sellItem = () => {
+  const sellItem = async () => {
     setBalance(balance + price * quantity);
-
+    await deleteProduct(title, quantity)
+    setReload(true)
   }
   return (
     <div className={ItemCardStyle.item_card} style={{zIndex: `${zIndex}`}}>

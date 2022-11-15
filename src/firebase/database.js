@@ -9,6 +9,7 @@ import {
   doc,
   orderBy,
   getDoc,
+  deleteDoc,
 } from "firebase/firestore";
 
 import {objExists, updateData} from "./ultils"
@@ -48,7 +49,7 @@ async function addToInventory(product) {
       }
     })
   // write back to firestore
-    docsItem.map(item => {
+    docsItem.forEach(item => {
       const itemRef = doc(db, "inventory", `${item.name}`)
       updateData(itemRef, item)
     })
@@ -67,15 +68,36 @@ async function getInventory() {
   return docsItem
 }
 
-async function deleteProduct(product) { 
+async function deleteProduct(name, quantity) { 
   // Get all item
+  let docsItem = await getInventory()
   // Modify the array, if product quantity is less than 1 
-  // Filter it out 
-  // Write back to firestore
+  if(docsItem.size != 0){
+    docsItem = docsItem.map(item => {
+      if(item.name == name){
+        return {...item, quantity: item.quantity - quantity}
+      }else{
+        return item
+      }
+    })
+    // Filter it out 
+    const filterOut = docsItem.filter(item => item.quantity < 1)
+    console.log(filterOut)
+    // Write back to firestore
+    docsItem.forEach(item => {
+      if(filterOut.some(filteredItem => filteredItem.name == item.name)){
+        deleteDoc(doc(db, "inventory", `${item.name}`)) 
+      }else{
+        const itemRef = doc(db, "inventory", `${item.name}`)
+        updateData(itemRef, item)
+      }
+    })
+  }
 }
 
 module.exports = {
   queryProduct,
   addToInventory,
+  deleteProduct,
   getInventory
 };

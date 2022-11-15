@@ -1,4 +1,4 @@
-const { updateDoc } = require("firebase/firestore")
+const { updateDoc, deleteDoc, doc } = require("firebase/firestore")
 
 const objExists = (data, obj) => {
   return data.some(item => item.name == obj.name)
